@@ -1,0 +1,2 @@
+# SafetyParty
+Aplicativo de festas

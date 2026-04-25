@@ -1,0 +1,69 @@
+body{
+    background-color: rgb(22, 22, 22);
+    color: whitesmoke;
+    text-align: center;
+}
+
+.logo > img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 400px;
+}
+
+.Slogan > h1{
+    background-image: linear-gradient(to right, rgb(3, 224, 3) , rgba(4, 190, 190, 0.767), rgb(255, 1, 192));
+    color: black;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#menu{
+    color: rgba(245, 245, 245, 0.575);
+}
+
+.menu > a{
+    color: white;
+    text-decoration: none;
+}
+
+.menu > a:hover{
+    color: green;
+    text-decoration-line: none;
+}
+
+.Cliente{
+    display: inline-block;
+    justify-content: center;
+    background-color: rgba(245, 245, 245, 0.082);
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 200px;
+    margin: 0px 0px 0px 0px;
+    padding: 10px 10px 10px 10px;
+}
+
+.Motorista{
+    display: inline-block;
+    justify-content: center;
+    background-color: rgba(245, 245, 245, 0.082);
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 200px;
+    padding: 10px 10px 10px 10px;
+    margin: 0px 0px 0px 0px;
+}
+
+.Organizador{
+    display: inline-block;
+    justify-content: center;
+    background-color: rgba(245, 245, 245, 0.082);
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 200px;
+    padding: 10px 10px 10px 10px;
+    margin: 0px 0px 0px 0px;
+}
+
