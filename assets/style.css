@@ -54,6 +54,18 @@ body{
     justify-content: center;
 }
 
+#paginainicial{
+    padding-bottom: 10px;
+}
+
+#paginainicial > a{
+    color: white;
+}
+
+#paginainicial > a:hover{
+    color: rgb(102, 255, 0);
+}
+
 .menulogin{
     background: rgba(255, 255, 255, 0.1); 
     backdrop-filter: blur(10px);
