@@ -55,9 +55,29 @@
                     <a href="../index.html">Pagina Inicial</a>
                 </div>
 
-                <p>Login</p>
+                
             </div>
+            <h4>Login</h4>
+            <div class="login"> <!--Colocar o formulario de cadastro-->
+                    <form action="../php/cpassageiro.php" method="post">
+                        
+                        <div>
+                            <label for="email">Email: </label>
+                            <input type="email" id="iemail" name="email" required placeholder="email@gmail.com" autocomplete="email">
+                        </div>
 
+                        <div>
+                            <label for="senha">Senha: </label>
+                            <input type="password" id="isenha" name="senha" minlength="8" maxlength="20" required>
+                        </div>
+
+                        <div>
+                            <label for="confsenha">Confirmar senha: </label>
+                            <input type="password" id="iconfsenha" name="confsenha" minlength="8" maxlength="20" required>
+                        </div>
+
+                        <button type="submit">Entrar na conta</button>
+                    </form>
 
         </div>
 
