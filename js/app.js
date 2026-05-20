@@ -5,6 +5,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 
 particlesJS("particles-js", {
   particles: {
+
     number: {
       value: 50
     },
@@ -37,5 +38,20 @@ particlesJS("particles-js", {
       enable: true,
       speed: 2
     }
-  }
+  },
+
+  interactivity: {
+    detect_on: "canvas",
+
+    events: {
+      onhover: {
+        enable: true,
+        mode: "grab"
+      },
+
+      resize: true
+    }
+  },
+
+  retina_detect: true
 });
