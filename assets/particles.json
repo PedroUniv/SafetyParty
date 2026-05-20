@@ -14,7 +14,7 @@
       "type": "circle",
       "stroke": {
         "width": 0,
-        "color": "#000000"
+        "color": "#110116;"
       },
       "polygon": {
         "nb_sides": 4
@@ -48,7 +48,7 @@
     "line_linked": {
       "enable": true,
       "distance": 157.82952832645452,
-      "color": "#d607f2",
+      "color": "#000022",
       "opacity": 0.28409315098761817,
       "width": 0.9469771699587272
     },
