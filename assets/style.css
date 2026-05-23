@@ -254,7 +254,7 @@ input:checked + .slider:before {
 
 .passageiro{
     background-color: rgba(245, 245, 245, 0.082);
-    border: 1px solid rgba(245, 245, 245, 0.199);
+    border: 1px solid #ccc; 
     border-radius: 10px;
     width: 380px;
     height: 170px;
@@ -267,9 +267,6 @@ input:checked + .slider:before {
     transition-duration: 0.3s;
 }
 
-.passageiro > p{
-    color: rgba(245, 245, 245, 0.575);
-}
 
 .passageiro > img{
     background-color: rgba(102, 255, 0, 0.664);
@@ -320,7 +317,7 @@ input{
 
 .Motorista{
     background-color: rgba(245, 245, 245, 0.082);
-    border: 1px solid rgba(245, 245, 245, 0.199);
+    border: 1px solid #ccc; 
     border-radius: 10px;
     width: 380px;
     height: 170px;
@@ -342,13 +339,10 @@ input{
 }
 
 
-.Motorista > p{
-    color: rgba(245, 245, 245, 0.575);
-}
 
 .Organizador{
     background-color: rgba(245, 245, 245, 0.082);
-    border: 1px solid rgba(245, 245, 245, 0.199);
+    border: 1px solid #ccc; 
     border-radius: 10px;
     width: 380px;
     height: 170px;
@@ -367,8 +361,4 @@ input{
     height: 80px;
     border-radius: 10px;
     border: 1px solid rgb(102, 255, 0);
-}
-
-.Organizador > p{
-    color: rgba(245, 245, 245, 0.575);
 }
