@@ -1,3 +1,5 @@
+
+
 function lightmodep() {
 
     const elemento =
@@ -15,6 +17,9 @@ function lightmodep() {
 
         // Fundo claro
         document.body.style.backgroundColor = 'white';
+        document.getElementsByClassName("menulogin")[0].style.borderColor = "black";
+        
+ 
 
         localStorage.setItem('tema', 'light');
 
@@ -28,6 +33,8 @@ function lightmodep() {
 
         // Fundo escuro
         document.body.style.backgroundColor = '#111';
+        document.getElementsByClassName("menulogin")[0].style.borderColor = "rgba(255, 255, 255, 0.2)";
+
 
         localStorage.setItem('tema', 'dark');
     }
