@@ -134,6 +134,12 @@ font-size: 12px;
   border-radius: 20%;
 }
 
+.notransition .slider,
+.notransition .slider:before {
+    transition: none !important;
+    -webkit-transition: none !important;
+}
+
 input:checked + .slider {
   background-color: rgb(0, 122, 55);
 }
