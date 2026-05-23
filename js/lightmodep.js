@@ -16,7 +16,6 @@ function lightmodep() {
         // Fundo claro
         document.body.style.backgroundColor = 'white';
         document.getElementsByClassName("menulogin")[0].style.borderColor = "black";
-        console.log(document.getElementsByClassName("menulogin"));
         
  
 
