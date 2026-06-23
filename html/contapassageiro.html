@@ -5,7 +5,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        <script src="../node_modules/jcalendar.js/dist/calendar.js"></script>    
+        <script src="../node_modules/jcalendar.js/dist/translations/calendar.translations.pt.js"></script>        
         <!-- Bootstrap CSS v5.3.8 -->
         <link rel="stylesheet" href="../node_modules/jcalendar.js/dist/calendar.js.css">  
         <link
@@ -65,7 +66,17 @@
             <div id="fotologin">
                 <img src="../images/fotousuario.png" alt="fotodousuario">
             </div>     
-            <div id="calendar"></div>           
+            <div id="calendar"></div>
+            <h4><b><u>Festas</u></b></h4>    
+            <div class="festas">
+                <div id="rockinrio">
+                    <h5>Rock in rio</h5>
+                </div>
+
+                <div id="lollapalloza">
+                    <h5>Lollapalloza</h5>
+                </div>
+            </div>       
 
         </div>
 
@@ -85,8 +96,7 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="../js/app.js"></script>     
     <script src="../js/lightmodep.js"></script> 
-    <script src="../node_modules/jcalendar.js/dist/calendar.js"></script>    
-    <script src="../node_modules/jcalendar.js/dist/translations/calendar.translations.pt.js"></script>          
+          
     <script> 
     var calendarInstance1 = new calendarJs( "calendar", __TRANSLATION_OPTIONS, {
         manualEditingEnabled: true
@@ -94,15 +104,6 @@
         // All your options can be set here
         
     } );
-    
-    let event = {
-    from: new Date(),
-    to: new Date(),
-    title: "A New Event",
-    description: "A description of the event"
-};
-
-calendarInstance.addEvent( event );
     </script>          
     </body>
 </html>
