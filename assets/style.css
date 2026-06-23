@@ -180,6 +180,7 @@ input:checked + .slider:before {
 
 #menu > p{
     margin: 0px;
+    color: #949494;
 }
 
 .menu > a{
@@ -204,7 +205,7 @@ input:checked + .slider:before {
 }
 
 #paginainicial > a{
-    color: white;
+    color: #949494;
 }
 
 #paginainicial > a:hover{
@@ -249,12 +250,12 @@ input:checked + .slider:before {
 
 .login > a:hover{
     border-color:  rgba(102, 255, 0, 0.664);
-    color:  rgba(102, 255, 0, 0.664);
+    color:  rgba(80, 197, 2, 0.664);
 }
 
 .passageiro{
     background-color: rgba(245, 245, 245, 0.082);
-    border: 1px solid #ccc; 
+    border: 1px solid #949494; 
     border-radius: 10px;
     width: 380px;
     height: 170px;
@@ -263,7 +264,7 @@ input:checked + .slider:before {
 }
 
 .passageiro:hover{
-    border-color: rgba(102, 255, 0, 0.664);
+    border-color: rgba(80, 197, 2, 0.664);
     transition-duration: 0.3s;
 }
 
@@ -317,7 +318,7 @@ input{
 
 .Motorista{
     background-color: rgba(245, 245, 245, 0.082);
-    border: 1px solid #ccc; 
+    border: 1px solid #949494; 
     border-radius: 10px;
     width: 380px;
     height: 170px;
@@ -334,7 +335,7 @@ input{
 }
 
 .Motorista:hover{
-    border-color: rgba(102, 255, 0, 0.664);
+    border-color: rgba(80, 197, 2, 0.664);
     transition-duration: 0.3s;
 }
 
@@ -342,7 +343,7 @@ input{
 
 .Organizador{
     background-color: rgba(245, 245, 245, 0.082);
-    border: 1px solid #ccc; 
+    border: 1px solid #949494; 
     border-radius: 10px;
     width: 380px;
     height: 170px;
@@ -351,7 +352,7 @@ input{
 }
 
 .Organizador:hover{
-    border-color: rgba(102, 255, 0, 0.664);
+    border-color: rgba(80, 197, 2, 0.664);
     transition-duration: 0.3s;
 }
 
