@@ -1,1 +1,1 @@
-Cadastro criado com sucesso
+Sua conta foi criada com sucesso!
