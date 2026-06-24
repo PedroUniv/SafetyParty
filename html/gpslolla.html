@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel do Passageiro - Modais Customizados</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: transparent; 
+    overflow:hidden;
+    font-family:'Segoe UI', 'Arial', sans-serif;
+}
+
+/* Container Principal do App */
+.passenger-panel {
+    width: 450px;
+    height: 750px;
+    background: linear-gradient(145deg, #0f0f16, #151526);
+    border-radius: 32px;
+    border: 2px solid #a855f7;
+    box-shadow: 0 0 35px rgba(168,85,247,.4);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card superior do Motorista e Veículo */
+.driver-card {
+    background: rgba(30, 30, 50, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.driver-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.driver-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #00ffaa;
+    background: #2b2b40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+.driver-text h4 {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.driver-text span {
+    color: #00ffaa;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.vehicle-info {
+    text-align: right;
+}
+
+.vehicle-model {
+    color: #cbd5e1;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.vehicle-color {
+    font-size: 11px;
+    color: #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 2px;
+}
+
+.color-dot {
+    width: 8px;
+    height: 8px;
+    background: #c026ff; 
+    border-radius: 50%;
+    box-shadow: 0 0 8px #d946ef;
+}
+
+.vehicle-plate {
+    background: #fff;
+    color: #000;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #000;
+    display: inline-block;
+    letter-spacing: 0.5px;
+}
+
+/* Área do MiniMapa */
+.minimap-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.map {
+    position: absolute;
+    width: 1800px;
+    height: 1800px;
+    left: 0;
+    top: 0;
+    transition: transform 0.1s linear;
+}
+
+/* Estradas */
+.route { position: absolute; background: #00ffaa; border-radius: 20px; box-shadow: 0 0 12px rgba(0,255,170,.8); z-index: 2; }
+.h { height: 10px; } .v { width: 10px; } .d { height: 10px; transform-origin: left center; }
+.street { position: absolute; background: #2b2b40; border-radius: 20px; opacity: 0.3; z-index: 1; }
+
+/* Cidades */
+.city { width: 16px; height: 16px; position: absolute; border-radius: 50%; background: #a855f7; box-shadow: 0 0 15px #a855f7; z-index: 5; }
+.city.main { background: #00ffaa; box-shadow: 0 0 15px #00ffaa; animation: pulseCity 2s infinite; }
+.city.pickup { background: #ff00aa; box-shadow: 0 0 15px #ff00aa; }
+
+@keyframes pulseCity {
+    0% { box-shadow: 0 0 10px #00ffaa; }
+    50% { box-shadow: 0 0 25px #00ffaa, 0 0 8px #fff; }
+    100% { box-shadow: 0 0 10px #00ffaa; }
+}
+
+.label {
+    position: absolute; color: white; font-size: 11px; font-weight: 600; white-space: nowrap;
+    text-shadow: 0 0 8px rgba(0,0,0,0.8); background: rgba(15, 15, 25, 0.85);
+    border: 1px solid rgba(255,255,255,0.1); padding: 3px 10px; border-radius: 20px; backdrop-filter: blur(3px); z-index: 6;
+}
+.event-label {
+    background: linear-gradient(90deg, #d946ef, #a855f7); font-size: 12px;
+    border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 0 15px rgba(217,70,239, 0.8); padding: 4px 12px;
+}
+
+/* Elemento do Carro */
+.car { width: 26px; height: 44px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(0deg); z-index: 100; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+.carBody { width: 100%; height: 100%; position: relative; border-radius: 10px; background: linear-gradient(180deg, #f0a3ff, #c026ff); box-shadow: 0 0 20px #d946ef; border: 1px solid rgba(255,255,255,0.3); }
+.carBody::before { content: ""; position: absolute; width: 14px; height: 18px; left: 50%; top: 6px; transform: translateX(-50%); border-radius: 5px; background: rgba(255,255,255,0.4); }
+.wheel { position: absolute; width: 4px; height: 9px; background: #1a1a2e; border-radius: 4px; }
+.w1 { left: -3px; top: 7px; } .w2 { right:-3px; top: 7px; } .w3 { left: -3px; bottom: 7px; } .w4 { right: -3px; bottom: 7px; }
+
+.ping { width: 70px; height: 70px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border-radius: 50%; border: 2px solid rgba(217,70,239,.5); animation: ping 2s infinite ease-out; pointer-events: none; z-index: 90; }
+@keyframes ping { 0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0.8; } 100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; } }
+
+/* Rodapé de Status + Ações */
+.footer-panel {
+    background: rgba(15, 15, 25, 0.9);
+    border-top: 1px solid rgba(168, 85, 247, 0.3);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 10;
+}
+
+.travel-status {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 255, 170, 0.3);
+    padding: 10px;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #00ffaa;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.action-btn {
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    transition: all 0.2s;
+}
+.action-btn:hover { background: linear-gradient(90deg, #1d4ed8, #1e40af); transform: translateY(-1px); }
+
+/* Modais do Sistema */
+.modal-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(6px);
+    z-index: 200; display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-content {
+    background: linear-gradient(135deg, #131324, #1b1b3a); border: 2px solid #a855f7;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.5); border-radius: 24px;
+    padding: 24px; width: 85%; text-align: center; color: white;
+    transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-overlay.active .modal-content { transform: scale(1); }
+.modal-content h3 { font-size: 18px; margin-bottom: 8px; color: #00ffaa; }
+.modal-content p { font-size: 13px; color: #cbd5e1; margin-bottom: 18px; line-height: 1.4; }
+.modal-btn {
+    background: linear-gradient(90deg, #d946ef, #a855f7); color: white; border: none;
+    padding: 10px 24px; font-size: 13px; font-weight: bold; border-radius: 20px;
+    cursor: pointer; box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
+    outline: none;
+}
+.modal-btn.secondary { background: #2b2b40; box-shadow: none; border: 1px solid #475569; margin-left: 10px; }
+
+.stop-timer { font-size: 28px; font-weight: bold; color: #ff00aa; margin-top: 8px; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<div class="passenger-panel">
+    
+    <div class="driver-card">
+        <div class="driver-info">
+            <div class="driver-avatar">👨🏻‍✈️</div>
+            <div class="driver-text">
+                <h4>Cleiton </h4>
+                <span>⭐ 4.9 • Motorista Oficial</span>
+            </div>
+        </div>
+        <div class="vehicle-info">
+            <div class="vehicle-model">Volkswagen Gol</div>
+            <div class="vehicle-color"><span class="color-dot"></span>Roxo Neon</div>
+            <div><span class="vehicle-plate">ASI1R23</span></div>
+        </div>
+    </div>
+
+    <div class="minimap-container">
+        <div class="modal-overlay active" id="modal-start">
+            <div class="modal-content">
+                <h3>Acompanhar Viagem</h3>
+                <p>Seu transporte coletivo sairá de Viçosa coletando passageiros nas cidades agendadas até o evento em Belo Horizonte.</p>
+                <button class="modal-btn" onclick="startJourney()">Entrar na Rota</button>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="modal-stop">
+            <div class="modal-content">
+                <h3 style="color: #ff00aa;">🛑 Parada de Embarque</h3>
+                <p id="stop-desc">Aguardando embarque dos passageiros...</p>
+                <p style="font-size: 11px; color: #a855f7; margin-top: 5px;">Tempo limite de parada regulamentado: 5 min</p>
+                <div class="stop-timer" id="stop-countdown">05:00</div>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="modal-end">
+            <div class="modal-content">
+                <h3>🏁 Viagem Concluída</h3>
+                <p style="color: #ffcc44; font-weight: 600; font-size: 15px;">Você chegou em segurança para seu evento?</p>
+                <button class="modal-btn" onclick="confirmSafety(true)">Sim, Cheguei Bem! 🎉</button>
+                <button class="modal-btn secondary" onclick="confirmSafety(false)">Não / Reportar</button>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="modal-alert">
+            <div class="modal-content">
+                <h3 id="alert-title">📢 Notificação</h3>
+                <p id="alert-desc">Mensagem informativa aqui.</p>
+                <button class="modal-btn" onclick="closeCustomAlert()">Entendido</button>
+            </div>
+        </div>
+
+        <div class="map" id="map">
+            <div class="street" style="width:1400px; height:4px; left:100px; top:1100px;"></div>
+            <div class="street" style="width:4px; height:900px; left:500px; top:300px;"></div>
+            <div class="street" style="width:1000px; height:4px; left:300px; top:650px;"></div>
+            <div class="street" style="width:4px; height:700px; left:1150px; top:200px;"></div>
+            
+            <div class="route v" style="height:120px; left:595px; top:1030px;"></div>
+            <div class="route h" style="width:255px; left:345px; top:1025px;"></div>
+            <div class="route v" style="height:250px; left:345px; top:780px;"></div>
+            <div class="route h" style="width:165px; left:350px; top:775px;"></div>
+            <div class="route v" style="height:315px; left:510px; top:780px;"></div>
+            <div class="route h" style="width:245px; left:515px; top:1090px;"></div>
+            <div class="route v" style="height:670px; left:755px; top:425px;"></div>
+            <div class="route h" style="width:385px; left:760px; top:420px;"></div>
+            <div class="route v" style="height:95px; left:1140px; top:330px;"></div>
+
+            <div class="city main" style="left:592px; top:1142px;"></div>
+            <div class="label" style="left:615px; top:1140px;">🚩 Viçosa (Embarque)</div>
+
+            <div class="city pickup" style="left:592px; top:1022px;"></div>
+            <div class="label" style="left:615px; top:1017px;">🚌 Teixeiras</div>
+
+            <div class="city pickup" style="left:342px; top:772px;"></div>
+            <div class="label" style="left:230px; top:770px;">🚌 Mariana</div>
+
+            <div class="city pickup" style="left:507px; top:772px;"></div>
+            <div class="label" style="left:495px; top:745px;">🚌 Ouro Preto</div>
+
+            <div class="city pickup" style="left:752px; top:1087px;"></div>
+            <div class="label" style="left:775px; top:1085px;">🚌 Juiz de Fora</div>
+
+            <div class="city main" style="left:1137px; top:322px;"></div>
+            <div class="label" style="left:1160px; top:320px;">🏙️ São Paulo</div>
+            <div class="label event-label" style="left:1065px; top:280px;">🚀 Lollapalooza</div>
+        </div>
+        
+        <div class="ping"></div>
+        <div class="car" id="car">
+            <div class="carBody">
+                <div class="wheel w1"></div><div class="wheel w2"></div>
+                <div class="wheel w3"></div><div class="wheel w4"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-panel">
+        <div class="travel-status" id="status">📱 SISTEMA PRONTO</div>
+        <button class="action-btn" onclick="shareLocation()">
+            🔗 Compartilhar Localização em Tempo Real
+        </button>
+    </div>
+</div>
+
+<script>
+    const mapElement = document.getElementById("map");
+    const carElement = document.getElementById("car");
+    const statusDiv = document.getElementById("status");
+    const modalStart = document.getElementById("modal-start");
+    const modalStop = document.getElementById("modal-stop");
+    const modalEnd = document.getElementById("modal-end");
+    const modalAlert = document.getElementById("modal-alert");
+    const alertTitle = document.getElementById("alert-title");
+    const alertDesc = document.getElementById("alert-desc");
+    const stopDesc = document.getElementById("stop-desc");
+    const stopCountdown = document.getElementById("stop-countdown");
+    
+    const waypoints = [
+        { x: 600, y: 1150, name: "Viçosa" },
+        { x: 600, y: 1030, name: "Teixeiras", isStop: true, msg: "Parada em Teixeiras: Coletando passageiro Alan..." },
+        { x: 350, y: 1030 },
+        { x: 350, y: 780,  name: "Mariana", isStop: true, msg: "Parada em Mariana: Coletando passageira Beatriz..." },
+        { x: 515, y: 780,  name: "Ouro Preto", isStop: true, msg: "Parada em Ouro Preto: Coletando passageiro Carlos..." },
+        { x: 515, y: 1095 },
+        { x: 760, y: 1095, name: "Conselheiro Lafaiete", isStop: true, msg: "Parada em Lafaiete: Coletando passageira Denise..." },
+        { x: 760, y: 425 },
+        { x: 1145, y: 425 },
+        { x: 1145, y: 330, name: "Belo Horizonte" }
+    ];
+    
+    let segments = [];
+    for(let i=0; i < waypoints.length - 1; i++) {
+        let p1 = waypoints[i];
+        let p2 = waypoints[i+1];
+        let dx = p2.x - p1.x;
+        let dy = p2.y - p1.y;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+        let angle = (Math.atan2(dy, dx) + Math.PI/2) * (180 / Math.PI);
+        segments.push({ p1, p2, dist, angle, targetNode: p2 });
+    }
+    
+    const SPEED = 0.12; 
+    let isAnimating = false;
+    let isStoppedAtCity = false;
+    let animationId = null;
+    let lastTime = 0;
+    let pendingReset = false; 
+    
+    let currentSegment = 0;
+    let distOnSegment = 0;
+    let currentCarAngle = segments[0].angle;
+
+    // Função centralizadora dinâmica baseada no tamanho atual do mapa
+    function updateMapPosition(x, y) {
+        const container = document.querySelector(".minimap-container");
+        const centerX = container.clientWidth / 2;
+        const centerY = container.clientHeight / 2;
+        mapElement.style.transform = `translate(${centerX - x}px, ${centerY - y}px)`;
+    }
+
+    updateMapPosition(waypoints[0].x, waypoints[0].y);
+    carElement.style.transform = `translate(-50%, -50%) rotate(${currentCarAngle}deg)`;  
+
+    function startJourney() {
+        modalStart.classList.remove("active");
+        isAnimating = true;
+        isStoppedAtCity = false;
+        lastTime = 0;
+        animationId = requestAnimationFrame(updatePosition);
+    }
+    
+    function updatePosition(timestamp) {
+        if (!isAnimating || isStoppedAtCity) return;
+        
+        if (!lastTime) {
+            lastTime = timestamp;
+            animationId = requestAnimationFrame(updatePosition);
+            return;
+        }
+        
+        const deltaTime = timestamp - lastTime;
+        lastTime = timestamp;
+        
+        distOnSegment += SPEED * deltaTime;
+        let seg = segments[currentSegment];
+        
+        while (distOnSegment >= seg.dist) {
+            distOnSegment -= seg.dist;
+            
+            if (seg.targetNode.isStop) {
+                triggerCityStop(seg.targetNode);
+                currentSegment++;
+                distOnSegment = 0; 
+                return; 
+            }
+            
+            currentSegment++;
+            if (currentSegment >= segments.length) {
+                endJourney();
+                return;
+            }
+            seg = segments[currentSegment];
+        }
+        
+        const ratio = distOnSegment / seg.dist;
+        const currentMapX = seg.p1.x + (seg.p2.x - seg.p1.x) * ratio;
+        const currentMapY = seg.p1.y + (seg.p2.y - seg.p1.y) * ratio;
+        
+        let targetAngle = seg.angle;
+        let diff = targetAngle - currentCarAngle;
+        while (diff > 180) diff -= 360;
+        while (diff < -180) diff += 360;
+        currentCarAngle += diff * 0.2; 
+        
+        updateMapPosition(currentMapX, currentMapY);
+        carElement.style.transform = `translate(-50%, -50%) rotate(${currentCarAngle}deg)`;      
+        statusDiv.innerHTML = "🛣️ ROTA EM ANDAMENTO RUMO AO EVENTO";
+        statusDiv.style.color = "#00ffaa";
+        
+        animationId = requestAnimationFrame(updatePosition);
+    }
+    
+    function triggerCityStop(cityNode) {
+        isStoppedAtCity = true;
+        statusDiv.innerHTML = `🛑 AGUARDANDO EM: ${cityNode.name.toUpperCase()}`;
+        statusDiv.style.color = "#ff00aa";
+        
+        stopDesc.innerText = cityNode.msg;
+        modalStop.classList.add("active");
+        
+        let totalSeconds = 300; 
+        
+        let interval = setInterval(() => {
+            totalSeconds -= 60; 
+            if(totalSeconds < 0) totalSeconds = 0;
+
+            let mins = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+            let secs = String(totalSeconds % 60).padStart(2, '0');
+            stopCountdown.innerText = `${mins}:${secs}`;
+            
+            if(totalSeconds <= 0) {
+                clearInterval(interval);
+                modalStop.classList.remove("active");
+                isStoppedAtCity = false;
+                lastTime = 0; 
+                if (currentSegment < segments.length) {
+                    animationId = requestAnimationFrame(updatePosition);
+                } else {
+                    endJourney();
+                }
+            }
+        }, 600); 
+    }
+    
+    function endJourney() {
+        isAnimating = false;
+        statusDiv.innerHTML = "✅ CHEGADA COMPLETA NO EVENTO";
+        statusDiv.style.color = "#ffaa55";
+        setTimeout(() => {
+            modalEnd.classList.add("active");
+        }, 600);
+    }
+    
+    function confirmSafety(safe) {
+        modalEnd.classList.remove("active");
+        pendingReset = true; 
+        
+        if(safe) {
+            showCustomAlert("🎉 Sucesso!", "Agradecemos a confirmação! Tenha um excelente evento e aproveite bastante a sua experiência.");
+        } else {
+            showCustomAlert("⚠️ Central Acionada", "Seu aviso de inconformidade foi gerado. Nossa central de suporte entrará em contato imediatamente.");
+        }
+    }
+    
+    function shareLocation() {
+        const fakeUrl = "https://rotas.evento.com.br/track/ABC1D23";
+        navigator.clipboard.writeText(fakeUrl).then(() => {
+            showCustomAlert("🔗 Link Copiado", "O link de rastreamento em tempo real foi salvo na sua área de transferência. Compartilhe com quem desejar!");
+        }).catch(() => {
+            showCustomAlert("Rastreamento Ativo", "Link de monitoramento seguro: " + fakeUrl);
+        });
+    }
+
+    function showCustomAlert(title, message) {
+        alertTitle.innerText = title;
+        alertDesc.innerText = message;
+        modalAlert.classList.add("active");
+    }
+
+    function closeCustomAlert() {
+        modalAlert.classList.remove("active");
+        if(pendingReset) {
+            pendingReset = false;
+            resetToStart();
+        }
+    }
+
+    function resetToStart() {
+        if (animationId) cancelAnimationFrame(animationId);
+        currentSegment = 0;
+        distOnSegment = 0;
+        currentCarAngle = segments[0].angle;
+        isAnimating = false;
+        isStoppedAtCity = false;
+        lastTime = 0;
+        
+        statusDiv.innerHTML = "📱 SISTEMA PRONTO";
+        statusDiv.style.color = "#00ffaa";
+        
+        updateMapPosition(waypoints[0].x, waypoints[0].y);
+        carElement.style.transform = `translate(-50%, -50%) rotate(${currentCarAngle}deg)`;      
+        setTimeout(() => {
+            modalStart.classList.add("active");
+        }, 400);
+    }
+</script>
+</body>
+</html>

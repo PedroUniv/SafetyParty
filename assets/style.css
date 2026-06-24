@@ -379,19 +379,102 @@ input{
 }
 
 .festas{
-    border: 1px solid gray;
+    border: 1px solid rgb(129, 129, 129);
     border-radius: 5px;
     margin: 10px;
+}
+
+#rrock > a{
+    text-decoration: none;    
+}
+
+#rrock > a:hover{
+    text-decoration: none;
+    border-color: rgba(80, 197, 2, 0.664);      
 }
 
 #rockinrio{
-    border: 1px solid gray;
+    border: 1px solid rgb(129, 129, 129);
     border-radius: 5px;
     margin: 10px;
 }
 
-#lollapalloza{
-    border: 1px solid gray;
+#rockinrio:hover{
+    border: 1px solid rgba(80, 197, 2, 0.664);
+    color: rgba(80, 197, 2, 0.664);
+}
+
+#rockinrio > p{
+    color: rgb(129, 129, 129);
+    font-size: 13px;
+}
+
+#rockinrio > h5{
+    color: rgb(129, 129, 129);
+}
+
+#rockinrio > img{
+    width: 290px;
+    height: 100px;
+    border-radius: 2px;
+}
+
+#lollapalooza{
+    border: 1px solid rgb(129, 129, 129);
     border-radius: 5px;
     margin: 10px;
+    text-decoration: none;
+}
+
+#lollapalooza:hover{
+    border: 1px solid rgba(80, 197, 2, 0.664);
+    color: rgba(80, 197, 2, 0.664);    
+}
+
+#lollapalooza > p{
+    font-size: 13px;
+    text-decoration: none;
+    color: rgb(129, 129, 129);
+}
+
+#lollapalooza > h5{
+    color: rgb(129, 129, 129);
+}
+
+#lollapalooza > img{
+    width: 290px;
+    height: 100px;
+    border-radius: 2px;
+}
+
+#lolla > a{
+    text-decoration: none; 
+}
+
+#compraring{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 80px;
+}
+
+#viageemandamento{
+    border: 1px solid rgb(129, 129, 129);
+    border-radius: 5px;
+    color: rgb(129, 129, 129);
+}
+
+#acompanhar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 80px;    
+}
+
+#proximasviagens{
+    border: 1px solid rgb(129, 129, 129);
+    border-radius: 5px; 
+    color: rgb(129, 129, 129);   
 }
