@@ -550,4 +550,18 @@ input{
     margin: 10px;    
 }
 
+.caravanas{
+    color: rgb(129, 129, 129);
+    border: 1px solid rgb(129, 129, 129);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;        
+}
 
+#caravanaativa{
+    color: rgb(129, 129, 129);
+    border: 1px solid rgb(129, 129, 129);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;        
+}

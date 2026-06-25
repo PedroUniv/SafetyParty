@@ -67,7 +67,7 @@
 
             <div id="btnevento">
                 <div id="meuseventos">
-                    <button type="submit"><a href="" style="text-decoration: none; color: whitesmoke;">Minhas Caravanas</a></button>
+                    <button type="submit"><a href="../html/contamotorista.html" style="text-decoration: none; color: whitesmoke;">Minhas Caravanas</a></button>
                 </div>
 
                 <div id="cadeventos">
@@ -79,33 +79,21 @@
                 
                         <div id="caravanaativa">
                             <h5>Nome da festa: </h5>
-                            <p>Valor por pessoas: R$0,00</p>
-                            <p>Tipo do veiculo e numero de vagas</p>
-                            <hr>
-                            <h5>Numero de vagas disponiveis</h5>
-                            <hr>
-                            <h5>Passageiros confirmados</h5>
-                            <p>Nome do passageiro</p>
-                            <p>Nome do passageiro</p>
-                            <p>Nome do passageiro</p>
-                            <hr>
-                            <h5>Receita estimada: R$0,00</h5>
+                            <p>Local da festa: </p>
+                            <p>Data da festa: </p>
+                            <p>Numero de pessoas interessadas: </p>
+                            <p>Preço sugerido: R$0,00</p>
+                            <button onclick="alerta()">Criar Caravana para este evento</button>
                         </div>
 
                         <div id="caravanaativa">
-                            <h5>Nome da festa: Rock in rio </h5>
-                            <p>Valor por pessoas: R$120,00</p>
-                            <p>Tipo do veiculo e numero de vagas</p>
-                            <hr>
-                            <h5>Numero de vagas disponiveis</h5>
-                            <hr>
-                            <h5>Passageiros confirmados</h5>
-                            <p>Paulo Sergio, 23 Anos</p>
-                            <p>Heitor Santos, 30 Anos</p>
-                            <p>Micaella Rodrigues, 24 Anos</p>
-                            <hr>
-                            <h5>Receita estimada: R$360,00</h5>
-                        </div>                        
+                            <h5>Nome da festa: Rock in rio</h5>
+                            <p>Local da festa: Cidade do Rock - Parque Olímpico - Barra da Tijuca, Rio de Janeiro, RJ.</p>
+                            <p>Data da festa: Dias 04, 05, 06, 07, 11,12 e 13 de setembro</p>
+                            <p>Numero de pessoas interessadas: 3</p>
+                            <p>Preço sugerido: R$120,00</p>
+                            <button onclick="alerta()">Criar Caravana para este evento</button>
+                        </div>                    
                 </div>
 
 
@@ -130,6 +118,11 @@
     <!-- scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="../js/app.js"></script>   
-    <script src="../js/lightmodep.js"></script>           
+    <script src="../js/lightmodep.js"></script>    
+    <script>
+        function alerta(){
+            alert("Sua caravana foi criada com sucesso!");
+        }
+    </script>       
     </body>
 </html>
