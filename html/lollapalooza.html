@@ -114,7 +114,8 @@
                     <p>São Paulo para São Paulo</p>
                     <p>Saída 08:20 AM</p>
                     <p>João - Peugeot 208 - ASC1D78</p>
-                    <div id="acompanhar"><a href="" target="_top"><button type="submit">Marcar Viagem</button></a></div>
+                    <div id="acompanhar">
+                        <button style="margin-left: 30px;" onclick="mostrarAlertas()">Marcar Viagem</button></div>
                 </div>                
 
         </div>
@@ -146,5 +147,17 @@
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>     
+
+    <script>
+        function mostrarAlertas() {
+            // Mensagem aparece quando eu clico
+            alert("Viagem marcada. Seu motorista chegará em breve.");
+
+            // Vai aparecer depois de 5 segundos 1000ms = 1s
+            setTimeout(() => {
+                alert("Seu motorista chegou.");
+            }, 5000);
+        }
+    </script>
     </body>
 </html>
