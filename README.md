@@ -28,10 +28,9 @@ A empresa busca parcerias estratégicas com organizadores de eventos e plataform
  
 - Tabela de papéis da Equipe
   
-  CEO - Arthur Saraiva Gonsaga - 28764
-  Scrum Master - Jefferson Rafael Martins Santana - 25830
-  Product Owner - Thyago Alejandro de lima 28895
-  Designer - Vinicius dos Passos Ribeiro – 28770
-  Desenvolvedor - Pedro Henrique Miranda de Carvalho – 28307
-  Desenvolvedor - Gabriel da Silva Monteiro - 26514
-  
+  - CEO - Arthur Saraiva Gonsaga - 28764
+  - Scrum Master - Jefferson Rafael Martins Santana - 25830
+  - Product Owner - Thyago Alejandro de lima 28895
+  - Designer - Vinicius dos Passos Ribeiro – 28770
+  - Desenvolvedor - Pedro Henrique Miranda de Carvalho – 28307
+  - Desenvolvedor - Gabriel da Silva Monteiro - 26514
